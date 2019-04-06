@@ -270,44 +270,47 @@ namespace Lab1
                 //add all values before the index to the new array
                 //insert the new value at the specificed index
                 //Add remaining OG values to array
-                int?[] newerArray = new int?[size * 2];
+                int?[] newerArray = new int?[size -1]; //creates a new array with one less spot
+                int newerArraySize = size - 1;
                 int removedValue;
-                if (index != 0 && index != (size - 1))
+                if (index != 0 && index != (size - 1)) //testing if the remove is in the middle of the array
                 {
                     for (int i = 0; i < index; i++)
                     {
                         newerArray[i] = array[i];
                     }
-                    for (int j = (index + 1); j < size; j++)
+                    for (int j = (index + 1); j < size; j++) //skips over the value to be removed
                     {
                         newerArray[j - 1] = array[j];
                     }
                     removedValue = index;
-                    size = size++;
+                    size--;
                     array = newerArray;
                     return removedValue;
                 }
                 else if (index == 0)
                 {
-                    newerArray[index] = array[index + 1];
-                    for (int i = 1; i < size; i++)
+                    newerArray[index] = array[1]; //since index is 0, the remove value of the old array will be skipped and put the next value into the new array
+                    for (int i = 1; i < newerArraySize; i++)
                     {
                         newerArray[i] = array[i + 1];
                     }
+                    //newerArraySize is being subtracted again because the size of
+                    newerArray[newerArraySize - 1]  = array[size]; //this is done because an index out of range error will be thrown if the for loop tries to copy the last value out of the original array
                     removedValue = index;
-                    size = size++;
+                    size--;
                     array = newerArray;
                     return removedValue;
                 }
 
-                else if (index == (size - 1))
+                else if (index == (size - 1)) //testing to see if the value to be removed is at the end of the array
                 {
-                    for (int i = 0; i < (index); i++)
+                    for (int i = 0; i < index; i++) //ends before the last value can be copied
                     {
                         newerArray[i] = array[i];
                     }
                     removedValue = index;
-                    size = size++;
+                    size--;
                     array = newerArray;
                     return removedValue;
                 }
