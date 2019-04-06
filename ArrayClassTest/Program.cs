@@ -151,19 +151,24 @@ namespace ArrayClassTest
                 defaultSize[i] = i; //fills array with values from 0 to Size (10 by default)
             }
             defaultSize.InsertAt(0, 100); //insert at beginning of array
-            defaultSize.InsertAt(10, 100); //insert at beginning of array
+            defaultSize.InsertAt(10, 100); //insert at middle of array
             defaultSize.InsertAt((defaultSize.Size - 1), 100); //insert at end of array
             Console.WriteLine("100 inserted at beginning with full array, middle, expecting an array with these values: 100, ...., 100, ...., 100 \n");
             Console.WriteLine("\t" + defaultSize.GetDisplayText(" , ") + "\n");
+            Console.WriteLine("Ending size, expecting 20: \n");
+            Console.WriteLine("\t" + defaultSize.Size + "\n");
             Console.Write("\n");
             Console.WriteLine("----------------------TESTING RemoveAt() METHODS---------------------- \n");
             Console.Write("\n");
             Console.WriteLine("RemoveAt conditions to be tested: \n \t if the insert is at the beginning, if insert is in middle of array, and if the insert is at the end of the array, \n");
             defaultSize.RemoveAt(0); //insert at beginning of array
             defaultSize.RemoveAt(9); //insert at beginning of array
-            defaultSize.RemoveAt((defaultSize.Size - 3)); //insert at end of array
+            defaultSize.RemoveAt((defaultSize.Size-1)); //insert at end of array
             Console.WriteLine("100 removed from beginning, middle, and end of array, expecting an array WITHOUT these values: 100, ...., 100, ...., 100 \n");
             Console.WriteLine("\t" + defaultSize.GetDisplayText(" , ") + "\n");
+            Console.WriteLine("Ending size, expecting 17: \n");
+            Console.WriteLine("\t" + defaultSize.Size + "\n");
+            Console.Write("\n");
         }
 
         static void End_Of_Test()

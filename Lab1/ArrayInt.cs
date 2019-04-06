@@ -196,6 +196,8 @@ namespace Lab1
 
         public void InsertAt(int index, int value)
         {
+         //puts a value in a space and pushes values into different places on the array depending on their size
+            //does not increase the size of the array
             if (index < 0 || index >= size)
             {
                 throw new IndexOutOfRangeException("Index must be greater than zero and less than the array size");
@@ -216,7 +218,7 @@ namespace Lab1
                 //add all values before the index to the new array
                 //insert the new value at the specificed index
                 //Add remaining OG values to array
-                int?[] newerArray = new int?[size * 2];
+                int?[] newerArray = new int?[size];
                 if (index != 0 && index != (size -1))
                 {
                     for (int i = 0; i < index; i++)
@@ -243,12 +245,11 @@ namespace Lab1
                 }
                 else if (index == (size -1))
                 {
-                    for (int i = 0; i < (index -1); i++)
+                    for (int i = 0; i <= index; i++)
                     {
                         newerArray[i] = array[i];
                     }
                     newerArray[index] = value;
-                    newerArray[index + 1] = array[index];
                     size = size++;
                     array = newerArray;
                 }
@@ -270,8 +271,8 @@ namespace Lab1
                 //add all values before the index to the new array
                 //insert the new value at the specificed index
                 //Add remaining OG values to array
-                int?[] newerArray = new int?[size -1]; //creates a new array with one less spot
-                int newerArraySize = size - 1;
+                int newerArraySize = (size - 1);
+                int?[] newerArray = new int?[newerArraySize]; //creates a new array with one less spot
                 int removedValue;
                 if (index != 0 && index != (size - 1)) //testing if the remove is in the middle of the array
                 {
@@ -290,13 +291,13 @@ namespace Lab1
                 }
                 else if (index == 0)
                 {
-                    newerArray[index] = array[1]; //since index is 0, the remove value of the old array will be skipped and put the next value into the new array
+                    newerArray[index] = array[1]; //since index is 0, the remove value of the old array will be skipped and the next number in the OG array will be used
                     for (int i = 1; i < newerArraySize; i++)
                     {
                         newerArray[i] = array[i + 1];
                     }
-                    //newerArraySize is being subtracted again because the size of
-                    newerArray[newerArraySize - 1]  = array[size]; //this is done because an index out of range error will be thrown if the for loop tries to copy the last value out of the original array
+                    //newerArraySize is being subtracted again because the bounds of the newArrary is one less than the size
+                    newerArray[newerArraySize - 1]  = array[size-1]; //this is done because an index out of range error will be thrown if the for loop tries to copy the last value out of the original array
                     removedValue = index;
                     size--;
                     array = newerArray;
